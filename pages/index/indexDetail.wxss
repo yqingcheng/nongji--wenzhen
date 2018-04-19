@@ -1,0 +1,44 @@
+/**indexDetail.wxss**/
+image { width:100%; }
+.wrap {  width:99.9%;   background-color:#F6F6F6; } 
+.detail_tit{float:left;width:90%; padding-left:5%; padding-right:5%;height:60rpx; line-height: 70rpx;  background-color:#fff; border-bottom:1px solid #f6f6f6;overflow: hidden;}
+.txt-name1{ color:#2BCF86;padding-left:5%;  font-size:30rpx;border-left:1px solid #2BCF86; }
+.detail_top{width:100%; display:flex;}
+
+.my_list{width:100%; float:left;background-color:#fff; }
+.list_item{ width:90%; margin-left:5%;float:left; margin-top:.5rem;margin-bottom:.5rem;}
+.list_item .li_left{ width: 10%; float:left; margin-right:5px;}
+.list_item .li_left image{ width:100%;height:70rpx;border:1px solid #f6f6f6;
+border-radius: 50%;-webkit-border-radius: 50%;}
+.list_item .li_right2{ width: 10%; float:right; margin-left:5px;}
+.list_item .li_right2 image{ width:100%;height:70rpx;border:1px solid #f6f6f6;
+border-radius: 50%;-webkit-border-radius: 50%;}
+.list_item .li_right{ width: 85%; float:right; }
+ .list_item .li_right image{width:80%;height:8rem;}
+.list_item .li_right .li_right_txt{width:100%;}
+.list_item .li_right .li_right_txt .txt_name{font-size: 20rpx;}
+.list_item .li_right .li_right_txt .hui{color: #ccc;}
+.list_item .li_right .li_right_txt image{width:31%; float:left;max-height:150rpx; margin-right:12rpx;}
+
+.z_pic{float:left;width:90%; padding-left:5%; padding-right:5%; line-height: 70rpx; border-bottom:1px solid #f6f6f6; background-color:#fff;margin-top:.5rem; padding-top:25rpx;}
+.z_pic .z_tou{ width:30px;height:30px; border-radius: 50%;-webkit-border-radius: 50%;float:left; margin-bottom:20rpx;}
+.z_pic_right{float:left;width:80%;height:40px;line-height: 40px;margin-left:.5rem;} 
+.z_pic_right .txt{ margin-left:.5rem;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

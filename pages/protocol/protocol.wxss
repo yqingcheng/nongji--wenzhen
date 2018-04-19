@@ -1,0 +1,8 @@
+page{  
+  background: #f5f5f5;  
+}  
+ 		.wrapper{ width:90%; margin:0 auto; padding-top:.4rem;}
+		.wrapper .sign{}
+		.wrapper .sign .h3{ font-size:1em; margin-bottom:.3em; margin-top:.3em; color:#3C4447; font-weight: 600;}
+		.wrapper .sign view{font-size:.9em; margin-bottom:.4em;margin-top:.4em; color:#979da4; line-height:1.4em;}
+  

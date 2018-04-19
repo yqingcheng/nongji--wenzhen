@@ -1,0 +1,13 @@
+<!--主盒子-->  
+<view class="container">  
+  <navigator url="../message/message?quuid={{itemName.uuid}}" class="q_list"  wx:for="{{questions}}" wx:for-index="id" wx:for-item="itemName"  wx:key="id">
+        <view class="q_list_t">{{itemName.title}}</view>
+        <view class="q_list_b">
+            <view class="b_left">物种:{{itemName.specie}}</view>
+            <view class="b_right">{{itemName.createTime}}</view>
+        </view>
+   </navigator>
+   <view class="list_no" wx:if="{{questions.length == 0}}">
+   		<view class="list_img"><image src="{{imgurl}}nono.png"></image></view>
+   </view>
+</view>  

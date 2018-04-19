@@ -1,0 +1,67 @@
+<!--主盒子-->  
+<view class="container">  
+  <!--顶部导航-->  
+  <view class="nav_top">
+      <view class="nav_top_l " bindtap="navTab">
+         <text class="{{selected?'navtop_cur':' '}}" bindtap="selected"> 种植</text>
+      </view>
+      <view class="nav_top_r" bindtap="navTab">
+          <text class="{{selected1?'navtop_cur':' '}}" bindtap="selected1">养殖</text>
+      </view>
+  </view>  
+
+  <!--<block wx:if="{{selected}}">  -->
+      <!--种植左侧栏-->  
+      <view class="nav_left  111">  
+        <block wx:for="{{currentItems}}" wx:key="id">  
+          <!--当前项的id等于item项的id，那个就是当前状态-->  
+          <!--用data-index记录这个数据在数组的下标位置，使用data-id设置每个item的id值，供打开2级页面使用-->  
+          <view class="nav_left_items {{curNav == item.id ? 'active' : ''}}" bindtap="switchRightTab" data-index="{{index}}" data-id="{{item.id}}">{{item.name}}</view>  
+        </block>  
+      </view>  
+      <!--种植右侧栏-->  
+      <view class="nav_right">  
+        <!--如果有数据，才遍历项-->  
+        <view wx:if="{{navRightItems}}">  
+          <block wx:for="{{navRightItems}}" wx:key="id">  
+            <view class="nav_right_items {{curlis == item.id ? 'licur' : ''}}" bindtap="choiceTab" data-index="{{index}}" data-id="{{item.id}}" data-name="{{item.name}}">   
+                 {{item.name}} 
+                <!--viewa-->   
+            </view>  
+          </block>  
+        </view>  
+        <!--如果无数据，则显示数据-->  
+        <view wx:else>暂无数据</view>  
+      </view>  
+    <!--</block>-->
+
+
+    <!--<block wx:if="{{selected1}}">  
+      <!--种植左侧栏-->  
+      <!--<view class="nav_left 222">  
+        <block wx:for="{{navLeftItems2}}" wx:key="id">  
+          <!--当前项的id等于item项的id，那个就是当前状态-->  
+          <!--用data-index记录这个数据在数组的下标位置，使用data-id设置每个item的id值，供打开2级页面使用-->  
+          <!--<view class="nav_left_items {{curNav2 == item.id ? 'active' : ''}}" bindtap="switchRightTab2" data-index="{{index}}" data-id="{{item.id}}">{{item.name}}</view>  
+        </block>  
+      </view>  
+      <!--种植右侧栏-->  
+      <!--<view class="nav_right">  
+        <!--如果有数据，才遍历项-->  
+        <!--<view wx:if="{{navRightItems2[curIndex2].tree.nodes[1].tree.nodes}}">  
+          <block wx:for="{{navRightItems2[curIndex2].tree.nodes[1].tree.nodes}}" wx:key="id">  
+            <view class="nav_right_items {{curlis == item.id ? 'licur' : ''}}" data-index="{{index}}" data-id="{{item.id}}"  bindtap="choiceTab">   
+                 {{item.name}}  
+            </view>  
+          </block>  
+        </view>  
+        <!--如果无数据，则显示数据-->  
+        <!--<view wx:else>暂无数据</view>  
+      </view>  
+    </block>-->
+
+    
+  <view class="footerbtn" bindtap="nextpage">下一步</view>
+</view>  
+ <import src="../../utils/toast/wetoast.wxml"/>
+<template is="wetoast" data="{{...__wetoast__}}"/>

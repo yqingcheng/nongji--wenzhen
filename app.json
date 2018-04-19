@@ -1,0 +1,41 @@
+{
+  "pages":[  
+    "pages/index/index", 
+    "pages/index/indexDetail",  
+    "pages/choice/choice" , 
+    "pages/sign/sign",
+    "pages/message/message",
+    "pages/myuser/myuser",
+    "pages/bphone/bphone", 
+    "pages/protocol/protocol",
+    "pages/questionslist/questionslist" 
+    ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "云种养",
+    "navigationBarTextStyle":"black"  
+  } ,
+  "tabBar": {
+    "color": "#ccc",
+    "selectedColor": "#00D885",
+    "backgroundColor": "#F8F8FF",
+    "borderStyle": "white",
+    "list": [
+     
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tabbar_question@2x.png",
+        "selectedIconPath": "images/tabbar_question_selected@2x.png"
+      },
+       {
+      "pagePath": "pages/myuser/myuser",
+      "text": "我的",
+      "iconPath": "images/tabbar_person@2x.png",
+      "selectedIconPath": "images/tabbar_person_selected@2x.png"
+      }
+    ]
+  }
+
+} 

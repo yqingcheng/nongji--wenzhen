@@ -1,0 +1,27 @@
+
+<template is="wetoast" data="{{...__wetoast__}}"/>
+<view class="s_title">请选择问题类型并上传清晰的照片</view>
+<view class="section"> 
+  <picker bindchange="bindPickerChange" value="{{pickerindex}}" range="{{array}}" range-key="name">
+    <view class="picker">
+     <block wx:if="{{pickers}}">{{pickerval}}</block>{{array[pickerindex].name}}
+    </view>
+  </picker>
+</view>
+<view class="sign_con"> 
+  <view class="sign_txt" wx:if="{{printStatus==1}}">
+     <textarea name="message"  placeholder="写下您想提出的关于种植作物，以及饲养家禽家畜等，遇到的问题" bindinput="toValue" class="section_textarea" placeholder-style="color:#9ba0a6;" maxlength="2000"/>   
+    <import src="../common/image_uploader.wxml" />
+    <template is="image_uploader" data="{{...img1}}" />    
+    
+  </view> 
+</view>
+ 
+ <view class="footerbtn">
+  <form report-submit='true' bindsubmit='checkForm'>
+       <button form-type='submit' >完成</button>
+  </form>
+ </view>
+ <import src="../../utils/toast/wetoast.wxml"/>
+<template is="wetoast" data="{{...__wetoast__}}"/>
+ 

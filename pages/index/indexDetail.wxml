@@ -1,0 +1,106 @@
+<!--index.wxml-->
+<view class="wrap">
+	<view class="detail_tit">
+   		<text class="txt-name1">问题内容</text>  
+   	</view>  
+   	<view class="my_list">
+		<view   class="list_item" >
+			<view class="li_left"  style=" margin-top:10rpx;">
+				<image src="{{question.askerUser.head_img}}"></image>
+			</view>
+			<view class="li_right">
+				<view class="li_right_txt">
+					<text class="txt-name">{{question.askerUser.name}}</text> 
+				</view>
+				<view class="li_right_txt">
+					<text class="txt-name hui">{{question.create_time}}</text>  
+					<text class="txt-name hui" style="float: right;">{{question.askerUser.location}}</text>
+				</view>
+				<view class="li_right_txt" style="margin-top:20rpx;">
+					<text class="txt-name"> {{question.title}}</text>  
+				</view>
+				<view class="li_right_txt" style="margin-top:20rpx;"   wx:for="{{question.images}}" wx:for-index="idx" wx:for-item="imageItem" wx:key="idx">
+					<image src="{{imageItem}}"></image>
+				</view>
+			</view>
+		</view> 
+   </view>
+
+
+   <view class="detail_tit" style="margin-top:.5rem;">
+   		<text class="txt-name1">专业解答</text>  
+   </view>  
+   <view class="my_list" wx:if="{{question.answer_num==0}}" >
+   		<text class="txt-name" style="/*text-align: center*/width: 100%;text-align: center;display: block;padding: 8px; 0; 0;font-size:30rpx;">暂时没有回复哦！！！</text> 
+   </view>
+   <view class="my_list"  >
+   	<block  wx:for="{{question.answers}}"  wx:for-item="questionItem" wx:key="idx" >
+		<view   class="list_item" >
+			<block wx:if="{{questionItem.content_type==2}}">
+            	<block wx:if="{{questionItem.speaker_type==2}}">
+				  
+				    <!--问题图片-->
+			    	<view class="li_right"  style="width:50%; margin-top:10rpx;float:left">
+			     		<image src="{{questionItem.content}}" data-src="{{questionItem.content}}" bindtap="previewImage"></image>
+			     	</view>
+					  <!--回答人头像-->
+				   <view class="li_left"  >
+			     		<image src="{{question.answerUser.head_img}}"></image>
+			     	</view>
+				</block>
+				<block wx:elif="{{questionItem.speaker_type==1}}">
+				  
+				  <!--提问人头像-->
+					  <view class="li_right2"  >
+			     		<image src="{{question.askerUser.head_img}}"></image>
+			     	</view>
+					<view class="li_right"  style=" margin-top:10rpx;float:right">
+			     		<image src="{{questionItem.content}}" data-src="{{questionItem.content}}" bindtap="previewImage" style="float:right;border-radius:10rpx;"></image>
+			     	</view>
+					  
+				</block>
+			</block>
+			<block wx:elif="{{questionItem.content_type==1}}">
+				<block wx:if="{{questionItem.speaker_type==1}}">
+					<view class="li_right" style="float:left;margin-right:3%; ">
+			     		<view class="li_right_txt" style=" text-align: right; ">
+			     			<text class="txt-name">{{questionItem.content}}</text> 
+			     		</view>
+			     		<view class="li_right_txt">  
+			     			<text class="txt-name hui" style="float: right;">{{questionItem.create_time}}</text>  
+			     		</view>
+					</view> 
+					  <!--提问人头像-->
+				   <view class="li_left"  style="float:right;">
+			     		<image src="{{question.askerUser.head_img}}"></image>
+			     	</view> 
+				</block>
+				<block wx:elif="{{questionItem.speaker_type==2}}">
+					<!--回答人头像-->
+				    <view class="li_left"  >
+			     		<image src="{{question.answerUser.head_img}}"></image>
+			     	</view>
+				    <!--问题文字-->
+			    	<view class="li_right" >
+			     		<view class="li_right_txt">
+			     			<text class="txt-name">{{questionItem.content}}</text> 
+			     		</view>
+			     		<view class="li_right_txt">  
+			     			<text class="txt-name hui" >{{questionItem.create_time}}</text>  
+			     		</view> 
+			     	</view>
+				</block>
+			</block>
+		</view>
+   	</block>
+    </view>
+  
+    <view class="z_pic">
+    	 <image class="z_tou" src="{{question.answerUser.head_img}}"></image>
+    	 <view class="z_pic_right">
+    	 	 <text class="txt hui">{{question.answerUser.name}}</text>  
+	    	 <text class="txt hui" style="color: #2ea82b; border: 1px solid #2ea82b;    padding: 2rpx 5rpx;">{{question.answerUser.professional}}</text>  
+	    	 <text class="txt hui" style="padding: 2rpx 5rpx;color: #80a3ea;border: 1px solid #80a3ea;">LVL{{question.answerUser.level}}</text>  
+    	 </view>
+    </view>  
+</view>

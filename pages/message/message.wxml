@@ -1,0 +1,94 @@
+<!--主盒子-->  
+<view class="container">  
+   <scroll-view scroll-y="true" scroll-top="{{scrolltop}}" style="height:{{height-50}}px;transition: height 1s;"  bindtap="tapscroll"  >
+        <view class="chat_list">
+            <view class="list_r">
+                <view class="userimg"><image src="{{question.askerHead}}"></image></view>
+                <view class="usertext">
+                    <text class="vxtext">{{question.title}}</text>  
+                </view> 
+                <view class="timer"><text>{{question.createTime}}</text></view>
+            </view>
+            <block wx:for="{{question.askAnswers}}" wx:key="id" wx:for-item="qitem">
+            <view class="list_r"  wx:if="{{qitem.speakerType==1}}">
+                <view class="userimg"><image src="{{question.askerHead}}"></image></view>
+                <view class="usertext" wx:if="{{qitem.contentType==1}}">
+                    <text class="vxtext">{{qitem.content}}</text>  
+                </view> 
+                <view class="usertext" wx:elif="{{qitem.contentType==2}}">
+                    <image src='{{qitem.content}}'></image>
+                </view>
+                <view class="usertext" wx:else>
+                    <text class="vxtext">暂不支持</text>  
+                </view>
+                <view class="timer"><text>{{qitem.createTime}}</text></view>
+            </view>
+            <view class="list_l"  wx:if="{{qitem.speakerType==2}}">
+                <view class="userimg"><image src="{{question.answerHead}}"></image></view>
+                <view class="usertext" wx:if="{{qitem.contentType==1}}">
+                    <text class="vxtext">{{qitem.content}}</text>  
+                </view> 
+                <view class="usertext" wx:elif="{{qitem.contentType==2}}">
+                    <image src='{{qitem.content}}'></image>
+                </view>
+                <view class="usertext" wx:else>
+                    <text class="vxtext">暂不支持</text>  
+                </view>
+                <view class="timer"><text>{{qitem.createTime}}</text></view>
+            </view>
+            </block>
+        </view>
+     
+     </scroll-view>    
+
+<!-- wx:if="{{question.status==1 && question.step!=3}}" -->
+<view class="wa-row" style="height:50px;" >
+    <view class="wa_l">
+         <view><input placeholder="请输入..." bindinput="sendMessage" value='{{msg}}'/></view>
+    </view>
+    <view class="wa_r"> 
+        <image bindtap='elseBtn'  wx:if="{{more}}" src='{{imgurl}}plus1.png'></image>
+         <form report-submit="ture" bindsubmit="Btnall">
+          <button id="sub"  formType="submit"  wx:if="{{!more}}">发送</button>
+         </form>
+    </view>
+ </view>
+  
+ <view  id="emotionPanel" wx:if="{{moreBox}}" animation="{{animation}}">
+    <view class="wa-row"  style="background:#fff;">
+    <form report-submit="ture" bindsubmit="chooseImg">
+        <button type="default"  plain="false" formType='submit' style="border: none;"><image class="moreImage" src="/images/image.png"></image> </button>
+      </form>
+    </view> 
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</view>

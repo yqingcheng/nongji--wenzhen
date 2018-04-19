@@ -1,0 +1,22 @@
+<!--主盒子-->  
+<view class="container">  
+  <navigator>
+   <view class="myuser">
+        <view class="mypic">
+             <image src="{{userpic}}"></image> 
+        </view>
+        <view class="myname">{{username}}</view>
+   </view>
+  </navigator>
+    <navigator class="myhref"  url="../questionslist/questionslist" >
+       <view class="myhref_l">
+         <image src="{{imgurl}}goac.png"></image> 
+       </view>
+       <view class="myhref_c">
+             我的提问 
+       </view>
+       <view class="myhref_r">
+         <image src="{{imgurl}}r.png"></image> 
+       </view>
+     </navigator>
+</view>  

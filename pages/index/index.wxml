@@ -1,0 +1,58 @@
+
+<!--index.wxml-->
+<scroll-view class="page_list wrap" scroll-y="true" bindscrolltolower="loadMore"  bindscrolltoupper="refresh" style="height: 200px;background-color:#fff;">
+      <view class="my_swiper">
+         <view class="indextop">
+			 <view class="logo">
+			 	<view class="img"><image src='{{imgurl+"logo.png"}}'></image></view>
+			 </view>
+			 <view class="logotext">为所有农业从业者解决难题的平台</view>
+		 </view> 
+      <view class="indexhref" bindtap="gonext">
+			 <view class="ih_l">
+			   <image src="{{imgurl+'goac.png'}}"></image> 
+			 </view>
+			 <view class="ih_r">
+		          <view class="ih_r_t1">快速提问</view>
+		          <view class="ih_r_t2">免费提问  及时答复  专业解答</view>
+			 </view>
+		 </view>
+
+			<view class="my_list">
+				<view  wx:for="{{queatdata}}" wx:for-index="idx" wx:key="idx" wx:for-item="questionItem"  >
+			     	<navigator url="indexDetail?indexDetail={{questionItem.questionUUID}}" class="list_item" >
+			     		<view class="li_left"  style=" margin-top:10rpx;">
+			     			 <image src="{{questionItem.askerHeadImg}}"></image>
+			     		</view>
+			     		<view class="li_right" style="border-bottom:1px solid #f6f6f6;padding-bottom:20rpx;">
+			     			<view class="li_right_txt">
+			     				  <text class="txt-name">{{questionItem.askerName}}</text> 
+			     				  <text class="txt-name hui"  style="color:#2CD089; margin-left:.5rem;">{{questionItem.specie}}</text> 
+			     				  <text class="txt-name hui" style="float:right">{{questionItem.answerCount}}回答</text> 
+			     			</view>
+			     			<view class="li_right_txt">
+			     				  <text class="txt-name hui" style="height:60rpx;float: left;">{{questionItem.createTime}}</text>  
+			     				  <text class="txt-name hui" style="float: right; overflow:hidden;text-overflow:ellipsis; -o-text-overflow:ellipsis;white-space:nowrap;height:60rpx;width:45%;">{{questionItem.location}}</text>
+			     			</view>
+			     			<view class="li_right_txt" style="margin-bottom:10rpx;margin-top:10rpx;width:100%;float:left;">
+								<text class="txt-name" style=" width:100%;display:block;"> {{questionItem.title}}</text>  
+							</view>
+						   <view class="li_right_txt"> 
+				     		 <block class="li_right_txt" style="margin-top:20rpx;padding-bottom:20rpx;"  wx:for="{{questionItem.images}}" wx:for-index="idx" wx:key="idx" wx:for-item="imageItem">
+				     				  <image wx:if="{{imageItem}}" binderror="imageloaderr" lazy-load='true' mode="aspectFit" src="{{imageItem}}"></image> 
+				     		 </block>
+						    </view>
+			     		</view>
+			     	</navigator> 
+		     	</view>
+		     </view>
+     </view>
+     <view class="tips">
+        <view wx:if="{{loading}}" style="text-align:center;font-size:40rpx;">
+           <image style=" width:18px;height:18px;margin-top:10px;margin-bottom:-3px" src="http://h5.yzyy365.com/images/common/loading.gif" mode="aspectFill"/>  玩了命的加载中... 
+        </view>
+        <!--<view wx:else><text>没有更多内容了</text></view>-->
+    </view> 
+
+</scroll-view>
+  

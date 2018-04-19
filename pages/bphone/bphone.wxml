@@ -1,0 +1,25 @@
+<!--主盒子-->  
+<view class="container"> 
+	<form bindsubmit="formSubmit" bindreset="formReset"> 
+      <view class="section">
+      		<view class="s_l"> <image src='{{imgurl+"ip1.png"}}'></image></view>
+      		<view class="s_r"><input name="phone_no" bindinput="useriphone" placeholder="请输入手机号"  /></view>
+      </view> 
+       <view class="sections">
+      		<view class="ss_l"> <image src='{{imgurl+"ip2.png"}}'></image></view>
+      		<view class="ss_c"><input  name="code" bindinput="userpassword" placeholder="请输入验证码"   /></view>
+      		<view class="ss_r"><button disabled='{{disabled}}' data-id="2" bindtap="getVerificationCode">{{time}}</button></view>
+      </view> 
+
+      <view class="section3">
+      		  <button formType="submit">绑定</button>
+      </view> 
+
+      <view  class="section4">  
+		  <label>
+		  	<checkbox class="cbox" bindchange="checkboxChange" value="checkbox" style="zoom:60%;" checked="{{checked}}"  /> 
+		  </label> 
+		  <text  bindtap="goprotocol">我已阅读并同意<text style="color:#2cd088; margin:0 5px;">使用条款</text>和<text style="color:#2cd088; margin:0 5px;">隐私协议</text></text> 
+      </view>
+    </form>
+</view>  
