@@ -9,7 +9,7 @@ var validate = {
         return  /(?!^\d+$)(?!^[a-zA-Z]+$)^[0-9a-zA-Z]{6,20}$/i.test(value);
     },
     isPhoneNum:function(value){
-        return  /^(13[0-9]|15[012356789]|17[1678]|18[0-9]|14[57])[0-9]{8}$/i.test(value);
+        return /^[1][0-9]{10}$/i.test(value);
     }
 }
 
