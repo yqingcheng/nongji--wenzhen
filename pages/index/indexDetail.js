@@ -70,8 +70,7 @@ Page({
         });
     },  
   launchAppError: function (e) {
-    console.log(e.detail.errMsg);
-    if (e.detail.errMsg == 'invalid scene') {
+    console.log(e.detail.errMsg); 
       wx.showModal({
         title: '提示',
         content: '打开APP失败，请前往应用商城下载云种养App',
@@ -85,7 +84,7 @@ Page({
           }
         }
       })
-    }
+     
   },
   goindex:function(){
     console.log("goindex")
