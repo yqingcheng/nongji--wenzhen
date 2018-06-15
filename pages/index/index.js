@@ -10,7 +10,8 @@ Page({
         loading:false,
         hasmore:true,
         queatdata: [],
-        imgurl: imgurl
+        imgurl: imgurl,
+        btnshow:false
     },
     quetionDetail: function(event){
          var qid = event.currentTarget.dataset.qid;
@@ -20,8 +21,17 @@ Page({
     },
     
    onLoad: function () { 
-        this.getDataFromServer(this.data.page)
-    },
+        this.getDataFromServer(this.data.page);
+
+       // console.log(app.globalData.btnscene)
+        var scenenum = app.globalData.btnscene
+        if (scenenum == 1036 || scenenum == 1069 || scenenum == 1089 || scenenum == 1090){
+          this.setData({ btnshow:true })
+        }else{
+          this.setData({ btnshow: false })
+        }
+      
+    } ,
   refresh: function () {
       //  console.log("下拉刷新....")
        // this.onLoad()
@@ -111,5 +121,23 @@ Page({
     },
     imageloaderr:function(e){
       console.log(e.detail);
-    }
+    },
+    launchAppError: function (e) {
+      console.log(e.detail.errMsg);
+      if (e.detail.errMsg == 'invalid scene'){
+        wx.showModal({
+            title: '提示',
+            content: '打开APP失败，请前往应用商城下载云种养App',
+            success: function (res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+                // wx.hideToast()
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+                //wx.hideToast()
+              }
+            }
+          })
+      }
+    } 
 }) 

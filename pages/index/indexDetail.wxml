@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="wrap">
+<view class="wrap {{btnshow?'wrapmb':''}}">
 	<view class="detail_tit">
    		<text class="txt-name1">问题内容</text>  
    	</view>  
@@ -104,3 +104,15 @@
     	 </view>
     </view>  
 </view>
+  <button id='shareBtn' wx:if="{{btnshow}}"  open-type="launchApp" app-parameter="wechat" binderror="launchAppError">打开APP</button>
+
+  <view class='shareallbtn' wx:if="{{btnshow}}">
+      <view class='shareallbtnleft' bindtap='goindex'>
+          <image src='http://file.yzyy365.com/images/yunlite/share01.png'></image>
+          返回首页
+      </view>
+       <button class='shareallbtnright' id='shareallbtnright'  open-type="share" type="primary"> 
+           <image src='http://file.yzyy365.com/images/yunlite/share02.png'></image>
+            分享
+      </button>
+  </view>

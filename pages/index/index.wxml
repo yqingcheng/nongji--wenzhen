@@ -4,21 +4,15 @@
       <view class="my_swiper">
          <view class="indextop">
 			 <view class="logo">
-			 	<view class="img"><image src='{{imgurl+"logo.png"}}'></image></view>
+			 	<view class="img"  bindtap="gonext"><image src='http://file.yzyy365.com/images/yunlite//goadd.png'></image></view>
 			 </view>
-			 <view class="logotext">为所有农业从业者解决难题的平台</view>
+			 <view class="logotext">50万在线专家实时解答你的农业问题</view>
 		 </view> 
-      <view class="indexhref" bindtap="gonext">
-			 <view class="ih_l">
-			   <image src="{{imgurl+'goac.png'}}"></image> 
-			 </view>
-			 <view class="ih_r">
-		          <view class="ih_r_t1">快速提问</view>
-		          <view class="ih_r_t2">免费提问  及时答复  专业解答</view>
-			 </view>
-		 </view>
+      
+      <view style='height:.5rem;width:100%; background:#F4F3F3'></view>
 
 			<view class="my_list">
+        <view class="mylititle">已解答问题</view>
 				<view  wx:for="{{queatdata}}" wx:for-index="idx" wx:key="idx" wx:for-item="questionItem"  >
 			     	<navigator url="indexDetail?indexDetail={{questionItem.questionUUID}}" class="list_item" >
 			     		<view class="li_left"  style=" margin-top:10rpx;">
@@ -55,4 +49,5 @@
     </view> 
 
 </scroll-view>
-  
+
+  <button id='shareBtn' wx:if="{{btnshow}}"  open-type="launchApp" app-parameter="wechat" binderror="launchAppError">打开APP</button>

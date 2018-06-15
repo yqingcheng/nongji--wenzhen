@@ -1,7 +1,7 @@
 {
-  "pages":[  
+  "pages":[   
     "pages/index/index", 
-    "pages/index/indexDetail",  
+    "pages/index/indexDetail",
     "pages/choice/choice" , 
     "pages/sign/sign",
     "pages/message/message",

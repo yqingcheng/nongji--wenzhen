@@ -237,11 +237,17 @@ App({
     }
 
   },
+  onShow: function (options){
+   // console.log(options.scene)
+    this.globalData.btnscene = options.scene
+   
+  },
   globalData:{
     sessionId:null,
     userInfo:null,
     sessionInvalid:false,
     logined:false,
-    h5url: "https://h5.yzyy365.com/"
+    h5url: "https://h5.yzyy365.com/",
+    btnscene:''
   }
 })
