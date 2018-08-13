@@ -4,6 +4,8 @@
 let imgurl = require("../api/config").imgurl
 var app = getApp() 
 var APPURL="https://wx.yzyy365.com/liteapp.html"
+var API = require("../api/api")
+var url = app.globalData.h5url;
 Page({
    data: {
         page:1,
@@ -11,7 +13,8 @@ Page({
         hasmore:true,
         queatdata: [],
         imgurl: imgurl,
-        btnshow:false
+        btnshow:false,
+       showModal:false
     },
     quetionDetail: function(event){
          var qid = event.currentTarget.dataset.qid;
@@ -19,13 +22,13 @@ Page({
              url:"/index/indexDetail?qid="+qid,
          });
     },
-    
+
    onLoad: function () { 
         this.getDataFromServer(this.data.page);
-
        // console.log(app.globalData.btnscene)
         var scenenum = app.globalData.btnscene
-        if (scenenum == 1036 || scenenum == 1069 || scenenum == 1089 || scenenum == 1090){
+       // console.log(scenenum, 2)
+        if (scenenum == 1036 || scenenum == 1069){
           this.setData({ btnshow:true })
         }else{
           this.setData({ btnshow: false })
@@ -45,7 +48,7 @@ Page({
   getDataFromServer: function (page) {
     if (this.data.loading == true || this.data.hasmore==false){
       wx.showToast({
-        title: '没有更多拉拉！',
+        title: '没有更多啦！',
         icon: 'success',
         duration: 2000
       })
@@ -58,6 +61,13 @@ Page({
     //调用网络请求
     app.httpClient(APPURL +"?page="+ page, (error, data) => {
       if (data.queryList != null && data.queryList.length!=0) {
+          data.queryList.forEach( item => {
+              item.images = item.images.map( iet => {
+                  return [
+                      iet.slice(0,iet.indexOf('!'))
+                  ]
+              })
+          })
         let  quetionList = data.queryList;
         let curquedata = that_this.data.queatdata;
         if (curquedata != null && curquedata.length!=0){
@@ -79,13 +89,20 @@ Page({
           hasmore:false
         });
         wx.showToast({
-          title: '没有更多拉拉！',
+          title: '没有更多啦！',
           icon: 'success',
           duration: 2000
         })
       }
     })
   },
+    /*
+    * 已解答问题点击跳转到问题详情
+    * */
+    skipDetail(e) {
+        let id = e.currentTarget.dataset.id
+        wx.navigateTo({url: `./indexDetail?indexDetail=${id}`});
+    },
   onShareAppMessage: function () { 
       return {
 
@@ -98,29 +115,51 @@ Page({
       }
 
     },
-    gonext:function(){ 
-       //wx.navigateTo({
-          //url: "../bphone/bphone"
-      // });
-      //先判断是否登录
-      wx.showLoading({
-        title: '',
-      })
-      let user = wx.getStorageSync("user");
-      app.login();
-      var timer = setInterval(function () {
-        user = wx.getStorageSync("user")
-        if (app.globalData.logined ==true && user != "" && user.uuid != "") {
-          wx.hideLoading();
-          clearInterval(timer);
-          wx.navigateTo({
-            url: "../choice/choice"
-          });
-        }
-      }, 500);
+    bindgetuserinfo(e) {
+        wx.setStorageSync("user", e.detail);
+        this.gonext()
     },
-    imageloaderr:function(e){
-      console.log(e.detail);
+    comsHander() {
+        API.API.checkuserStatus(url, (res) => {
+            if(res.data.code === 100 && wx.getStorageSync("uuid")) {
+                wx.hideLoading()
+                wx.navigateTo({
+                    url: `../sign/sign`
+                })
+            } else {
+                API.API.getBind(url, (res) => {
+                    wx.setStorageSync("uuid", res.data.data.uuid)
+                    wx.hideLoading()
+                    wx.navigateTo({
+                        url: `../sign/sign`
+                    })
+                })
+            }
+        })
+    },
+    gonext(){
+        // 先判断是否登录
+        if (wx.getStorageSync("user")) {
+            wx.showLoading({
+                title: '加载中',
+            })
+            if (wx.getStorageSync("sessionId")) {
+                this.comsHander()
+            } else {
+                API.API.getSessionId(url, () => {
+                    this.comsHander()
+                })
+            }
+        } else {
+            this.setData({
+                showModal : true
+            })
+        }
+    },
+    jujue() {
+        this.setData({
+            showModal : false
+        })
     },
     launchAppError: function (e) {
       console.log(e.detail.errMsg);

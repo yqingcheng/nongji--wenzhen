@@ -31,7 +31,7 @@
    		<text class="txt-name1">专业解答</text>  
    </view>  
    <view class="my_list" wx:if="{{question.answer_num==0}}" >
-   		<text class="txt-name" style="/*text-align: center*/width: 100%;text-align: center;display: block;padding: 8px; 0; 0;font-size:30rpx;">暂时没有回复哦！！！</text> 
+   		<text class="txt-name" style="/*text-align: center*/width: 100%;text-align: center;display: block;padding: 8px; 0; 0;font-size:30rpx;">暂时没有回复哦！！！</text>
    </view>
    <view class="my_list"  >
    	<block  wx:for="{{question.answers}}"  wx:for-item="questionItem" wx:key="idx" >
@@ -41,7 +41,8 @@
 				  
 				    <!--问题图片-->
 			    	<view class="li_right"  style="width:50%; margin-top:10rpx;float:left">
-			     		<image src="{{questionItem.content}}" data-src="{{questionItem.content}}" bindtap="previewImage"></image>
+			     		<!-- <image src="{{questionItem.content}}" data-src="{{questionItem.content}}" bindtap="previewImage"></image> -->
+               <view class="wed" data-src="{{questionItem.content}}" bindtap="previewImage" style="background-image: url('{{questionItem.content}}')"></view> 
 			     	</view>
 					  <!--回答人头像-->
 				   <view class="li_left"  >
@@ -55,7 +56,8 @@
 			     		<image src="{{question.askerUser.head_img}}"></image>
 			     	</view>
 					<view class="li_right"  style=" margin-top:10rpx;float:right">
-			     		<image src="{{questionItem.content}}" data-src="{{questionItem.content}}" bindtap="previewImage" style="float:right;border-radius:10rpx;"></image>
+			     		 <!-- <image src="{{questionItem.content}}" data-src="{{questionItem.content}}" bindtap="previewImage" style="float:right;border-radius:10rpx;"></image>  -->
+                <view class="wed" data-src="{{questionItem.content}}" bindtap="previewImage" style="background-image: url('{{questionItem.content}}')"></view> 
 			     	</view>
 					  
 				</block>
@@ -77,7 +79,7 @@
 				</block>
 				<block wx:elif="{{questionItem.speaker_type==2}}">
 					<!--回答人头像-->
-				    <view class="li_left"  >
+				    <view class="li_left">
 			     		<image src="{{question.answerUser.head_img}}"></image>
 			     	</view>
 				    <!--问题文字-->
@@ -103,16 +105,21 @@
 	    	 <text class="txt hui" style="padding: 2rpx 5rpx;color: #80a3ea;border: 1px solid #80a3ea;">LVL{{question.answerUser.level}}</text>  
     	 </view>
     </view>  
+    <view class="blo_rap"></view>
 </view>
-  <button id='shareBtn' wx:if="{{btnshow}}"  open-type="launchApp" app-parameter="wechat" binderror="launchAppError">打开APP</button>
+  <!--<button id='shareBtn' wx:if="{{btnshow}}"  open-type="launchApp" app-parameter="wechat" binderror="launchAppError">打开APP</button>-->
 
-  <view class='shareallbtn' wx:if="{{btnshow}}">
+  <view class='shareallbtn' >
       <view class='shareallbtnleft' bindtap='goindex'>
-          <image src='http://file.yzyy365.com/images/yunlite/share01.png'></image>
+          <image src='../../images/tabbar_question_selected@2x.png'></image>
           返回首页
       </view>
        <button class='shareallbtnright' id='shareallbtnright'  open-type="share" type="primary"> 
            <image src='http://file.yzyy365.com/images/yunlite/share02.png'></image>
             分享
       </button>
+      <!--<view class='shareallbtnlefts' bindtap='Collection'>-->
+          <!--<text class="iconfont icon-shoucang" style="font-size:50rpx; color: {{Collection}};float: left;"></text>-->
+          <!--收藏-->
+      <!--</view>-->
   </view>

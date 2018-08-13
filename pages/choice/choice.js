@@ -169,8 +169,12 @@ Page({
     };
     let typeid = 1;
     if (this.data.selected1 == true) typeid=2;
-    wx.redirectTo({
-      url: '../sign/sign?name=' + curliname + "&typeid=" + typeid
-    })
+      getApp().globalData.name = curliname
+      getApp().globalData.typeid = typeid
+    console.log(getApp().globalData, 999)
+    wx.navigateBack({url: `../sign/sign`})
+    // wx.navigateTo({
+    //   url: '../sign/sign?name=' + curliname + "&typeid=" + typeid
+    // })
   }
 })  

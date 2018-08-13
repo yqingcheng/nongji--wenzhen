@@ -10,7 +10,8 @@
                   <view class="weui-uploader__files">
                     <block wx:for="{{uploadedImagesPaths}}" wx:for-item="image" wx:key="*this">
                       <view class="weui-uploader__file">
-                        <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="{{_previewImage}}"></image>
+                         <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="{{_previewImage}}"></image>
+                        <!--<view class="weui-uploader__img" style='background-image:url({{image}})' data-src="{{image}}" bindtap="{{_previewImage}}"></view>-->
                         <icon type="clear" size="15" data-index="{{index}}" bindtap="{{_cleanImage}}"/>
                       </view>
                     </block>

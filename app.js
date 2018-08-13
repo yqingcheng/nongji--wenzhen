@@ -73,6 +73,7 @@ App({
         wx.login({
           success: function (res) {
             this_app.httppost(this_app.globalData.h5url + "/njwd/login.do", { code: res.code }, function (res) {
+              console.log(res, 23)
               wx.setStorageSync("sessionId", res.sessionKey);
               this_app.globalData.sessionInvalid = true;
               this_app.checkBind();
@@ -248,6 +249,9 @@ App({
     sessionInvalid:false,
     logined:false,
     h5url: "https://h5.yzyy365.com/",
-    btnscene:''
+    btnscene:'',
+      typeid: '',
+      name: ''
+
   }
 })

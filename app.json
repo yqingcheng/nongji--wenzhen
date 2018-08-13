@@ -8,12 +8,15 @@
     "pages/myuser/myuser",
     "pages/bphone/bphone", 
     "pages/protocol/protocol",
-    "pages/questionslist/questionslist" 
+    "pages/questionslist/questionslist" ,
+    "pages/flower/flower",
+    "pages/recognition/recognition",
+    "pages/upload/upload"
     ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "云种养",
+    "navigationBarTitleText": "农技问诊",
     "navigationBarTextStyle":"black"  
   } ,
   "tabBar": {
@@ -26,14 +29,20 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "images/tabbar_question@2x.png",
-        "selectedIconPath": "images/tabbar_question_selected@2x.png"
+        "iconPath": "images/home3.png",
+        "selectedIconPath": "images/home2.png"
+      },
+      {
+        "pagePath": "pages/flower/flower",
+        "text": "拍照识物",
+        "iconPath": "images/photo2.png",
+        "selectedIconPath": "images/photo1.png"
       },
        {
       "pagePath": "pages/myuser/myuser",
       "text": "我的",
-      "iconPath": "images/tabbar_person@2x.png",
-      "selectedIconPath": "images/tabbar_person_selected@2x.png"
+      "iconPath": "images/me3.png",
+      "selectedIconPath": "images/me4.png"
       }
     ]
   }

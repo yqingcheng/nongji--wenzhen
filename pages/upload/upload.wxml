@@ -1,0 +1,45 @@
+<!--<import src="../../we-cropper/we-cropper.wxml"/>-->
+
+<!--<view class="cropper-wrapper">-->
+    <!--<template is="we-cropper" data="{{...cropperOpt}}"/>-->
+    <!--<view class="cropper-buttons">-->
+        <!--<view-->
+                <!--class="upload"-->
+                <!--bindtap="uploadTap">-->
+            <!--重新选择-->
+        <!--</view>-->
+        <!--<view-->
+                <!--class="getCropperImage"-->
+                <!--bindtap="getCropperImage">-->
+            <!--确定-->
+        <!--</view>-->
+    <!--</view>-->
+<!--</view>-->
+
+<template name="we-cropper">
+    <canvas
+            class="cropper  {{cutImage}}"
+            disable-scroll="true"
+            bindtouchstart="touchStart"
+            bindtouchmove="touchMove"
+            bindtouchend="touchEnd"
+            style="width:{{width}}px;height:{{height}}px;"
+            canvas-id="{{id}}">
+    </canvas>
+</template>
+
+<view class="cropper-wrapper">
+    <template is="we-cropper" data="{{...cropperOpt}}"/>
+    <view class="cropper-buttons">
+        <view
+                class="upload"
+                bindtap="uploadTap">
+            重新选择
+        </view>
+        <view
+                class="getCropperImage"
+                bindtap="getCropperImage">
+            确定
+        </view>
+    </view>
+</view>

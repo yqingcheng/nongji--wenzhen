@@ -11,7 +11,7 @@ var app = getApp();
 var url = app.globalData.h5url;
 Page({
   data: {
-    pickerindex:"",
+    // pickerindex:"",
     pickerval:"点击选择您的问题类型",
     pickers:true,
     array: [],
@@ -34,44 +34,50 @@ Page({
     printStatus:'1',
     params:{}
   },
-  onLoad: function (options) {
+    speciesChoose() {
+      wx.navigateTo({url: '../choice/choice'})
+    },
+  onShow: function () {
     //监听返回按钮
     let that = this;
-    let typeid = options.typeid;
-    let plantid = options.name;
+    // let typeid = options.typeid;
+    let plantid = getApp().globalData.name;
+    that.setData({
+        planId: plantid
+    })
     app.data.bool = true;
     let specieqt = wx.getStorageSync("specieqt");
-    let arraytmp = [];
+    // let arraytmp = [];
     if(specieqt==null||specieqt==""){
       specieqt = {};
     }
-    if (typeid == 1) {//种植
-      arraytmp = specieqt["plant"];
-    } else {//养殖
-      arraytmp = specieqt["animal"];
-    }
-    if (arraytmp == null || arraytmp==""){
-      //类别
-      app.httpget(url +"/specie/questionTypes.do", { id:typeid},function(data){
-        arraytmp = data.data;
-        that.setData({
-          array: arraytmp,
-          planId: plantid
-        });
-        if (typeid == 1) {//种植
-         specieqt["plant"] = arraytmp;
-        } else {//养殖
-          specieqt["animal"] = arraytmp;
-        }
-        wx.setStorageSync("specieqt", specieqt);
-      });
-    }else{
-      that.setData({
-        array: arraytmp,
-        planId: plantid
-      });
-    }
-    var printStatus = options.printStatus
+    // if (typeid == 1) {//种植
+    //   arraytmp = specieqt["plant"];
+    // } else {//养殖
+    //   arraytmp = specieqt["animal"];
+    // }
+    // if (arraytmp == null || arraytmp==""){
+    //   //类别
+    //   app.httpget(url +"/specie/questionTypes.do", { id:typeid},function(data){
+    //     arraytmp = data.data;
+    //     that.setData({
+    //       array: arraytmp,
+    //       planId: plantid
+    //     });
+    //     if (typeid == 1) {//种植
+    //      specieqt["plant"] = arraytmp;
+    //     } else {//养殖
+    //       specieqt["animal"] = arraytmp;
+    //     }
+    //     wx.setStorageSync("specieqt", specieqt);
+    //   });
+    // }else{
+    //   that.setData({
+    //     array: arraytmp,
+    //     planId: plantid
+    //   });
+    // }
+    // var printStatus = options.printStatus
     var self = this
    /* app.login().then(function (userInfo) {
       self.setData({ planId: planId, printStatus: printStatus })
@@ -87,24 +93,42 @@ Page({
        );
  
   },
-  checkForm(e){   
+  checkForm(e){  
     var self = this
     //var params = this.data.params  
     //var uploadedImagesPaths = this.data.img1.uploadedImagesPaths
-    var pickerindex = this.data.pickerindex
+    // var pickerindex = this.data.pickerindex
     var textareaval = this.data.message
-    if (pickerindex == "") { 
-         toast.show({
-            title: '问题类型不能为空',
-            duration: 1000
-          }); 
-      return;
-    }
+      if(this.data.planId === '') {
+          wx.showToast({
+                  title: '请选择物种',
+                  image: '../../images/faile.png',
+                  duration: 1000
+                })
+          return;
+      }
+    // if (pickerindex == "") {
+    //   wx.showToast({
+    //     title: '问题类型不能为空',
+    //     image: '../../images/faile.png',
+    //     duration: 1000
+    //   })
+    //     //  toast.show({
+    //     //     title: '问题类型不能为空',
+    //     //     duration: 1000
+    //     //   });
+    //   return;
+    // }
      if (validate.isEmpty(textareaval)) { 
-         toast.show({
-            title: '文本框不能为空',
-            duration: 1000
-          }); 
+       wx.showToast({
+         title: '文本框不能为空',
+         image: '../../images/faile.png',
+         duration: 1000
+       }) 
+        //  toast.show({
+        //     title: '文本框不能为空',
+        //     duration: 1000
+        //   }); 
       return;
     }
    
@@ -115,10 +139,10 @@ Page({
     let imgstr = "";
     if (imgarrs != null || imgarrs.length!=0)
       imgstr = imgarrs.join(",");
-    let quetiontype = this.data.array[pickerindex].name;
+    // let quetiontype = this.data.array[pickerindex].name;
     let speciename = this.data.planId;
     let user = app.getStoreUserInfo();
-    let data = { uuid: user.uuid, specie: speciename, questionType: quetiontype, 
+    let data = { uuid: wx.getStorageSync("uuid"), specie: speciename,
     content: textareaval, imgs: imgstr,
     formId: e.detail.formId};
     app.httppost(url +"/question/ask.do",data,function(rdata){
@@ -134,14 +158,13 @@ Page({
         })
       }
     });
-    //提交数据
   },
   
-  bindPickerChange: function(e) {
-   // console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      pickerindex: e.detail.value,
-      pickers:false
-    })
-  }
+  // bindPickerChange: function(e) {
+  //  // console.log('picker发送选择改变，携带值为', e.detail.value)
+  //   this.setData({
+  //     pickerindex: e.detail.value,
+  //     pickers:false
+  //   })
+  // }
 });

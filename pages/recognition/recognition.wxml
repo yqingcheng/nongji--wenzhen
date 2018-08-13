@@ -1,0 +1,21 @@
+<view class="bg">
+    <image src="{{img}}" mode="widthFix"></image>
+    <view class="name">{{name}}</view>
+</view>
+<view class="father">
+    <view class="jiantou"> ＜ </view>
+    <swiper indicator-dots="{{indicatorDots}}"
+            bindchange="change"
+            style="width: 100%;height: 100%;"
+            autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+        <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+            <swiper-item class="swipes">
+                <view class=" moo">
+                    <image src="{{item.img}}" class="slide-image"/>
+                    <view>{{item.text}}</view>
+                </view>
+            </swiper-item>
+        </block>
+    </swiper>
+    <view class="jiantou"> ＞ </view>
+</view>

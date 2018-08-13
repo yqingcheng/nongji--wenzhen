@@ -166,7 +166,7 @@ Page({
     let sessionid = wx.getStorageSync("sessionId");
     let msg = this.data.msg;
     let question = this.data.question;
-    let uuid = app.getStoreUserInfo().uuid;
+    let uuid = wx.getStorageSync("uuid");
     function callback(data){
       if(data.code==100){
         let question = that.data.question;

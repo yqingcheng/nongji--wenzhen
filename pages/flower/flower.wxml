@@ -1,0 +1,13 @@
+<view>
+
+    <image class="bg_flower" mode="widthFix" src="../../images/gbflower1.jpg"></image>
+    <image src="../../images/album.png" class="photo" bindtap="photo"></image>
+    <view class="album" bindtap="album">从相册选图</view>
+    <view >
+        <radio-group class="radio-group" bindchange="radioChange">
+            <label class="radio" wx:for="{{items}}" wx:key="index">
+                <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.name}}
+            </label>
+        </radio-group>
+    </view>
+</view>

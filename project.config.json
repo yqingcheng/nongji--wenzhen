@@ -20,13 +20,54 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 5,
+			"list": [
+				{
+					"id": -1,
+					"name": "1",
+					"pathName": "pages/sign/sign",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "flower",
+					"pathName": "pages/flower/flower",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "提问",
+					"pathName": "pages/questionslist/questionslist",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "photo",
+					"pathName": "pages/flower/flower",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "me",
+					"pathName": "pages/myuser/myuser",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "recog",
+					"pathName": "pages/recognition/recognition",
+					"query": "{img: \"http://tmp/wx736a8d58a39175d8.o6zAJsyxnxjZUW4e9XEo….4gShUEQI8cD0a9c42d0b024c02df336baac1e1e3127f.png\", name: \"绣球\"}"
+				}
+			]
 		}
 	}
 }

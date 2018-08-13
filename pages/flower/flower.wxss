@@ -1,0 +1,33 @@
+/* pages/flower/flower.wxss */
+page {
+    width: 100%;
+    height: 100%;
+}
+
+.bg_flower {
+    width: 100%;
+}
+
+.album {
+    margin: 1vh auto;
+    width: 200rpx;
+    text-align: center;
+    color: #169C4A;
+}
+
+.photo {
+    margin: 1vh auto 0 auto;
+    width: 180rpx;
+    height: 180rpx;
+    display: block;
+}
+.radio-group{
+    float: right;
+    margin: -135rpx 20rpx 0 0;
+    display: flex;
+    flex-direction: column;
+    width: 140rpx;
+}
+.radio{
+    margin-bottom: 10rpx;
+}

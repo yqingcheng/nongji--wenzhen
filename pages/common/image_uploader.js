@@ -95,30 +95,35 @@ class ImageUploader {
        if (this.data.uploadedImagesPaths.length >= this.data.count) {
           return;
         }
-        let filePath = res.tempFilePaths[0];
-        this._uploadImage(res).then(res => {
-            this._addToUploadedPaths(res, filePath);
-        }, e => {
+        res.tempFilePaths.forEach( item => {
+          this._uploadImage(item).then(res => {
+            this._addToUploadedPaths(res, item);
+          }, e => {
             console.log(e);
-        });
+          });
+        })
+        
     }
 
     _uploadImage(res){
         let data = this.data;
-        let filePath = res.tempFilePaths[0];
         let uploadParams = data.uploadParams;
         let formData = Object.assign({}, uploadParams['formData'], {});
 
         //console.info('为了演示效果，直接 resolve true ，真实使用时，请删除 return Promise.resolve(true);'); 
         //return Promise.resolve(true);
-
-        return wechat.uploadFile(uploadParams['url'],filePath,uploadParams['name'], formData);
+        
+          // let filePath = res.tempFilePaths;
+        let filePath = res
+          return wechat.uploadFile(uploadParams['url'], filePath, uploadParams['name'], formData);
     }
 
     _addToUploadedPaths(resp, filePath){
         if (this._isUploadSuccess(resp)) {
           this.data.uploadedImagesPaths.push(filePath);
+          console.log(this.data.uploadedImagesPaths)
           this.data.ImageServerPaths.push(resp.data.filepath[0]);
+          // console.log(this.data.ImageServerPaths)
             this.page.setData({
                 [this.key]: this.data
             });

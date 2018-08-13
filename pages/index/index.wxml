@@ -6,39 +6,51 @@
 			 <view class="logo">
 			 	<view class="img"  bindtap="gonext"><image src='http://file.yzyy365.com/images/yunlite//goadd.png'></image></view>
 			 </view>
-			 <view class="logotext">50万在线专家实时解答你的农业问题</view>
+			 <view class="logotext">3万在线专家实时解答你的农业问题</view>
 		 </view> 
       
       <view style='height:.5rem;width:100%; background:#F4F3F3'></view>
 
 			<view class="my_list">
         <view class="mylititle">已解答问题</view>
-				<view  wx:for="{{queatdata}}" wx:for-index="idx" wx:key="idx" wx:for-item="questionItem"  >
-			     	<navigator url="indexDetail?indexDetail={{questionItem.questionUUID}}" class="list_item" >
-			     		<view class="li_left"  style=" margin-top:10rpx;">
-			     			 <image src="{{questionItem.askerHeadImg}}"></image>
-			     		</view>
-			     		<view class="li_right" style="border-bottom:1px solid #f6f6f6;padding-bottom:20rpx;">
-			     			<view class="li_right_txt">
-			     				  <text class="txt-name">{{questionItem.askerName}}</text> 
-			     				  <text class="txt-name hui"  style="color:#2CD089; margin-left:.5rem;">{{questionItem.specie}}</text> 
-			     				  <text class="txt-name hui" style="float:right">{{questionItem.answerCount}}回答</text> 
-			     			</view>
-			     			<view class="li_right_txt">
-			     				  <text class="txt-name hui" style="height:60rpx;float: left;">{{questionItem.createTime}}</text>  
-			     				  <text class="txt-name hui" style="float: right; overflow:hidden;text-overflow:ellipsis; -o-text-overflow:ellipsis;white-space:nowrap;height:60rpx;width:45%;">{{questionItem.location}}</text>
-			     			</view>
-			     			<view class="li_right_txt" style="margin-bottom:10rpx;margin-top:10rpx;width:100%;float:left;">
-								<text class="txt-name" style=" width:100%;display:block;"> {{questionItem.title}}</text>  
-							</view>
-						   <view class="li_right_txt"> 
-				     		 <block class="li_right_txt" style="margin-top:20rpx;padding-bottom:20rpx;"  wx:for="{{questionItem.images}}" wx:for-index="idx" wx:key="idx" wx:for-item="imageItem">
-				     				  <image wx:if="{{imageItem}}" binderror="imageloaderr" lazy-load='true' mode="aspectFit" src="{{imageItem}}"></image> 
-				     		 </block>
-						    </view>
-			     		</view>
-			     	</navigator> 
-		     	</view>
+                <view class="wrap_li">
+                    <view class="blo"
+                          wx:for="{{queatdata}}"
+                          data-id="{{item.questionUUID}}"
+                          bindtap="skipDetail"
+                          wx:key="{{index}}">
+                        <image class="user_img" src="{{item.askerHeadImg}}"></image>
+                        <view class="right_li">
+                            <view class="title">
+                                <view>{{item.askerName}}</view>
+                                <view>{{item.specie}}</view>
+                            </view>
+                            <view class="question">{{item.title}}</view>
+                            <view class="tu">
+                                <view style="width: 100vw;height: 10rpx" wx:if="{{item.images.length < 1}}"></view>
+                                <view class="{{item.images.length == 1 ? 'yi' : item.images.length == 2 ? 'er' : 'san'}}"
+                                      wx:for="{{item.images}}"
+                                      wx:key="{{index}}"
+                                      wx:for-item="idx"
+                                      style="background-image: url('{{idx}}')">
+                                </view>
+
+                            </view>
+                            <view class="address">
+                                <image wx:if="{{item.location}}" src="../../images/address.png" mode="widthFix"></image>
+                                <view>{{item.location}}</view>
+                            </view>
+                            <view class="footer">
+                                <view class="data">{{item.createTime}}</view>
+                                <view class="mes">
+                                    <image src="../../images/message1.png" mode="widthFix"></image>
+                                    <view>{{item.answerCount}}条</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+
+                </view>
 		     </view>
      </view>
      <view class="tips">
@@ -46,8 +58,20 @@
            <image style=" width:18px;height:18px;margin-top:10px;margin-bottom:-3px" src="http://h5.yzyy365.com/images/common/loading.gif" mode="aspectFill"/>  玩了命的加载中... 
         </view>
         <!--<view wx:else><text>没有更多内容了</text></view>-->
-    </view> 
+    </view>
+
 
 </scroll-view>
+
+<view class="mask" wx:if="{{showModal}}"></view>
+<view class="modalDlg" wx:if="{{showModal}}">
+    <view class="title">为了您更好的体验,请先同意授权登录</view>
+    <view class="but">
+        <view bindtap="jujue">拒绝</view>
+        <view bindtap="jujue">
+            <button open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo">授权登录</button>
+        </view>
+    </view>
+</view>
 
   <button id='shareBtn' wx:if="{{btnshow}}"  open-type="launchApp" app-parameter="wechat" binderror="launchAppError">打开APP</button>
